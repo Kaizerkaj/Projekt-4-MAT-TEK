@@ -21,7 +21,7 @@ Bevis for at en Markov matrice med en potens m ligeså er en Markov matrice:
 
 Der er forskellige regler før at en Markov matrice (A) er rigtigt. For det første kan A ikke indeholde negative tal. Derudover skal summen af rækkerne give 1. En Markov matrix skal også være en (n X n) matrix. Dette vil sige, at hvis vi tager en Markov matrix A og hæver den til en potens m ($A^m$), vil den resulterende matrix også være en Markov matrix for enhver m = 0,1,2,3,...
 
-Dette skyldes, at at hæve en matrix til en potens m simpelthen betyder at multiplicere matricen med sig selv m gange. Derfor vil den resulterende matrix stadig have ikke-negative elementer og hver række vil stadig give summen 1, da disse egenskaber bevares under matricemultiplikation.
+Dette skyldes, at kan hæve en matrix til en potens m simpelthen betyder at multiplicere matricen med sig selv m gange. Derfor vil den resulterende matrix stadig have ikke-negative elementer og hver række vil stadig give summen 1, da disse egenskaber bevares under matricemultiplikation.
 
 \subsection*{Problem 3.}
 
@@ -61,3 +61,12 @@ PageRank algoritmen, som bruges til at rangere vigtigheden af web sider, bygger 
 I korthed, sætning 3.3 er relevant for PageRank algoritmen fordi den giver en matematisk begrundelse for at bruge den stationære fordeling af en Markov matrice til at rangere vigtigheden af web sider i algoritmen. Derudover giver sætningen en måde at beregne den stationære fordeling af matricen, som er afgørende for algoritmen.
 
 \subsection*{Problem 7.}
+
+For at bevise sætning 3.3 i tilfældet hvor $At$ er diagonalisérbar, vil vi først vise, at At har en unik stationær fordeling, og derefter vil vi vise, at denne stationære fordeling er den begrænsede fordeling af $(At)^k$ når $k$ når uendelig.
+
+Siden $At$ er diagonalisérbar, kan vi finde en inverterbar matrice $P$ således at $P^{-1} \cdot At \cdot P = D$ er en diagonal matrice, hvor $D$ har egenværdierne af $At$ på diagonalen.
+Da $A$ er en Markov matrice, har den en reel egenværdi af 1, som svarer til en egenvektor $x$ med positive værdier, der summeres til 1. Denne egenvektor $x$ er den unikke stationære fordeling af $At$, da det er den egenvektor, der svarer til egenværdien 1, og alle andre egenværdier har størrelsen mindre end 1.
+
+Siden $At$ er diagonalisérbar, kan vi repræsentere $At^k$ som $(P^{-1} \cdot At \cdot P)^k = P^{-1} \cdot At^k \cdot P = P^{-1} \cdot D^k \cdot P$. Da k øges, bliver egenværdierne af $D$ (som er de samme som egenværdierne af $At$) hævet til potensen $k$. Da egenværdien 1 har en størrelse af 1 og alle andre egenværdier har en størrelse mindre end 1, bliver egenværdien 1 dominerende som $k$ øges og de andre egenværdier nærmer sig 0. Derfor er den begrænsede fordeling af $(At)^k$ egenvektoren $x$ svarende til egenværdien 1, som er den unikke stationære fordeling af $At$.
+
+Derfor har vi vist, at for en Markov matrice $A$ med stricte positive værdier, hvis $At$ er diagonalisérbar, har den en unik stationær fordeling, og denne stationære fordeling er den begrænsede fordeling af $(At)^k$ når $k$ når uendelig.
