@@ -27,6 +27,8 @@ Dette skyldes, at kan hæve en matrix til en potens $m$ simpelthen betyder at mu
 Sætning 3.2 siger, at hvis $A \in R^{nxn}$ er en Markov matrix, så er den spektral radius (det største egenværdi i modulus) lig med 1. For at bevise dette, antager vi at der er en egenværdi $\lambda$ med en egenvektor $v$, så $A^kv = \lambda^kv$, hvor k er et positiv heltal. Men da $A^k$ er en Markov matrix, så er summen af hver række = 1, hvilket kan ikke matche med $\lambda^kv$, hvis $|\lambda| > 1$, da $|\lambda^k|$ vokser større som k øges, så det er en modsætning. Så spektral radius kan kun være mindre eller lig med 1.
 
 \subsection*{Problem 4.}
+ATT: Mangler lidt.
+
 
 Hvis $A$ er en Markov matrix og $0 < \tau < 1$, så skal vi bevise at $A_{\tau}$ også er en Markov matrix med kun positive elementer. Det er således fordi at $A$ er en Markov matrix, det betyder at alle elementer er positive og summen af hver række er 1. Når man tager $A_{\tau}$, så er summen af hver række stadig 1, og alle elementer er stadig positive, da man kun er ved at tage potenser af positive tal. Så $A_{\tau}$ er også en Markov matrix med kun positive elementer.
 
@@ -46,7 +48,7 @@ Da matricen $A$ er en Markov-matrix og egenvektoren $\mathbf{v}$ har positive el
 
 $$||\mathbf{v}||\infty \leq \sum{j=1}^n a_{jk} |v_j| = ||\mathbf{v}||_\infty$$
 
-Dette holder kun sandt hvis alle de ligheder er lige. Det betyder at alle elementerne i egenvektoren er ens og egenvektoren er en multiplum af vektoren med alle 1'ere. Derfor er den eneste egenværdi med $|\lambda| = 1$ $\lambda = 1$ og den tilsvarende egenvektor er $E_1 = span {\mathbf{e}}$.
+Dette er kun sandt hvis alle de ligheder er lige. Det betyder at alle elementerne i egenvektoren er ens og egenvektoren er en multiplum af vektoren med alle 1'ere. Derfor er den eneste egenværdi med $|\lambda| = 1$ $\lambda = 1$ og den tilsvarende egenvektor er $E_1 = span {\mathbf{e}}$.
 
 For at vise at andre egenværdier har en modulus mindre end 1, lader vi $\lambda$ være en egenværdi af $A$ således at $|\lambda| > 1$ og $\mathbf{v}$ være en tilsvarende egenvektor. Så har man:
 
@@ -63,10 +65,12 @@ PageRank algoritmen, som bruges til at rangere vigtigheden af web sider, bygger 
 
 I korthed, sætning 3.4 er relevant for PageRank algoritmen fordi den giver en matematisk begrundelse for at bruge den stationære fordeling af en Markov matrice til at rangere vigtigheden af web sider i algoritmen. Derudover giver sætningen en måde at beregne den stationære fordeling af matricen, som er afgørende for algoritmen.
 
+\newpage
 \subsection*{Problem 7.}
 
-Sætning 3.4 i bygger på at $A$ har $n$ egenværdier, bygger på det faktum, at når $A$ har bestemte egenværdier, så har $A$ og dets transponering $A^t$ samme egenværdier. Først ved vi, at alle egenværdierne for $A^t$ har absolutværdier mindre end 1 undtagen én egenværdi, som er lig 1. Derfor vil matricen $(A^t)^k$ nærme sig egenvektorens tilhørende egenværdien 1. Man lader så x være en egenvektor, der ikke er nul. Derfor er $A^t$ tilknyttet egenværdien 1. Hvilket vil sige at vi så har $A^t x = x$. Da matricen $(A^t)^k$ nærmer til egenvektorens tilhørende egenværdien 1, har vi:
+Sætning 3.4 i bygger på at $A$ har $n$ egenværdier, bygger på det faktum, at når $A$ har bestemte egenværdier, så har $A$ og dets transponering $A^t$ samme egenværdier. Først ved vi, at alle egenværdierne for $A^t$ har værdier mindre end 1 undtagen én egenværdi, som er lig 1. Derfor vil matricen $(A^t)^k$ nærme sig egenvektorens tilhørende egenværdi 1. Man lader så x være en egenvektor, der ikke er nul. Derfor er $A^t$ tilknyttet egenværdien 1. Hvilket vil sige at vi så har $A^t x = x$. Da matricen $(A^t)^k$ nærmer til egenvektorens tilhørende egenværdien 1, har vi:
 $$\lim_{k \to \infty} (A^t)^k = x\mathbf{e}^t = [x, x, . . ., x]$$
+Det vil altså sige at summen af vektoren $x$ er lig 1.
 
 
 
