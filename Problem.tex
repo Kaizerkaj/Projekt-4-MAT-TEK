@@ -21,7 +21,7 @@ Bevis for at en Markov matrice med en potens m ligeså er en Markov matrice:
 
 Der er forskellige regler før at en Markov matrice (A) er rigtigt. For det første kan A ikke indeholde negative tal. Derudover skal summen af rækkerne give 1. En Markov matrix skal også være en (n X n) matrix. Dette vil sige, at hvis vi tager en Markov matrix A og hæver den til en potens m ($A^m$), vil den resulterende matrix også være en Markov matrix for enhver m = 0,1,2,3,...
 
-Dette skyldes, at at hæve en matrix til en potens m simpelthen betyder at multiplicere matricen med sig selv m gange. Derfor vil den resulterende matrix stadig have ikke-negative elementer og hver række vil stadig give summen 1, da disse egenskaber bevares under matricemultiplikation.
+Dette skyldes, at kan hæve en matrix til en potens m simpelthen betyder at multiplicere matricen med sig selv m gange. Derfor vil den resulterende matrix stadig have ikke-negative elementer og hver række vil stadig give summen 1, da disse egenskaber bevares under matricemultiplikation.
 
 \subsection*{Problem 3.}
 
@@ -33,23 +33,27 @@ Hvis $A$ er en Markov matrix og $0 < \tau < 1$, så skal vi bevise at $A_{\tau}$
 
 \subsection*{Problem 5.}
 
-Et Markov-matrix $A$ er en kvadratisk matrix med ikke-negative elementer, hvor summen af elementerne i hver kolonne er 1. Det kan bruges til at modellere en Markov-proces, hvor sandsynligheden for at skifte til en fremtidig tilstand kun afhænger af den nuværende tilstand.
+Hvis $A$ er en Markov-matrix med stærkt positive elementer ($a_{ij} > 0$ for alle $i$,$j$), kan man bevise at der kun er én egenværdi $\lambda$ med $|\lambda| = 1$, nemlig $\lambda = 1$, og at den tilsvarende egenvektor er $E_1 = span {\mathbf{e}}$. Enhver anden egenværdi har en modulus mindre end 1.
 
-For at bevise, at der kun findes én egenværdi $\lambda$ med $|\lambda| = 1$, nemlig $\lambda = 1$, og at den tilsvarende egenplads er $E1 = \text{span}{e}$, kan vi bruge følgende trin:
-\begin{enumerate}
-\item Antag at $\lambda$ er en egenværdi med $|\lambda| = 1$ og $v$ er en tilsvarende egenvektor.
-\item Lad $k$ være et index, således at $||v||_{\infty} = |v_k|$.
-\item Ved definitionen af en egenværdi og egenvektor har vi $Av = \lambda v$. Ved at erstatte $v_k$ for $v$ i denne ligning får vi:
-$||v||{\infty} = |\lambda v_k| = |\lambda v_k| = |A v_k| = |A{ij} v_j| = |A_{ij} \lambda v_j| = |\lambda A_{ij} v_j|$
-\item Nu bruger vi ligningen $||v||{\infty} = |v_k| \leq \sum |v_j|$, og det faktum at $A{ij} > 0$, for at få:
-$||v||{\infty} \leq \sum |A{ij} v_j| \leq \sum A_{ij}|v_j| \leq \sum A_{ij}||v||{\infty} = ||v||{\infty}$
-\item Da begyndelsen og slutningen af ligningen er de samme, skal der være lighed på hver ligningssats.
-\item Derudfra kan vi konkludere, at $v_j = C$ for nogle konstante $C$.
-\item Ved at bruge $||v||{\infty} = |v_k| = C$, får vi $C = ||v||{\infty}$
-\item Derfor $v = Ce$
-\end{enumerate}
+Man kan bevise dette ved at antage at $\lambda$ er en egenværdi med $|\lambda| = 1$ og $\mathbf{v}$ er en tilsvarende egenvektor. Lad $k$ være et index således at $||\mathbf{v}||_\infty = |v_k|$. Så kan man skrive:
 
-Enhver anden egenværdi $\lambda$ skal have $|\lambda| < 1$, da hvis $|\lambda| > 1$, vil ligningen i trin 4 ikke holde stik.
+$$||\mathbf{v}||_\infty = |\lambda ||v_k| = |\lambda v_k| = |A\mathbf{v_k}|$$
+
+Ved hjælp af trekantens lighed kan man bevise at:
+
+$$||\mathbf{v}||\infty = |A\mathbf{v_k}| \leq \sum{j=1}^n |a_{jk} v_j| \leq \sum_{j=1}^n a_{jk} |v_j|$$
+
+Da matricen $A$ er en Markov-matrix og egenvektoren $\mathbf{v}$ har positive elementer, kan man skrive:
+
+$$||\mathbf{v}||\infty \leq \sum{j=1}^n a_{jk} |v_j| = ||\mathbf{v}||_\infty$$
+
+Dette holder kun sandt hvis alle de ligheder er lige. Det betyder at alle elementerne i egenvektoren er ens og egenvektoren er en multiplum af vektoren med alle 1'ere. Derfor er den eneste egenværdi med $|\lambda| = 1$ $\lambda = 1$ og den tilsvarende egenvektor er $E_1 = span {\mathbf{e}}$.
+
+For at vise at andre egenværdier har en modulus mindre end 1, lader vi $\lambda$ være en egenværdi af $A$ således at $|\lambda| > 1$ og $\mathbf{v}$ være en tilsvarende egenvektor. Så har man:
+
+$$||A^n\mathbf{v}||\infty = |\lambda^n||\mathbf{v}||\infty > ||\mathbf{v}||_\infty$$
+
+Dette strider mod at $A$ er en Markov-matrix, hvor alle elementerne i $A^n$ er positive og summen er 1. Derfor skal alle andre egenværdier have en modulus mindre end 1.
 
 
 \subsection*{Problem 6.}
@@ -61,3 +65,12 @@ PageRank algoritmen, som bruges til at rangere vigtigheden af web sider, bygger 
 I korthed, sætning 3.3 er relevant for PageRank algoritmen fordi den giver en matematisk begrundelse for at bruge den stationære fordeling af en Markov matrice til at rangere vigtigheden af web sider i algoritmen. Derudover giver sætningen en måde at beregne den stationære fordeling af matricen, som er afgørende for algoritmen.
 
 \subsection*{Problem 7.}
+
+For at bevise sætning 3.3 i tilfældet hvor $At$ er diagonalisérbar, vil vi først vise, at At har en unik stationær fordeling, og derefter vil vi vise, at denne stationære fordeling er den begrænsede fordeling af $(At)^k$ når $k$ når uendelig.
+
+Siden $At$ er diagonalisérbar, kan vi finde en inverterbar matrice $P$ således at $P^{-1} \cdot At \cdot P = D$ er en diagonal matrice, hvor $D$ har egenværdierne af $At$ på diagonalen.
+Da $A$ er en Markov matrice, har den en reel egenværdi af 1, som svarer til en egenvektor $x$ med positive værdier, der summeres til 1. Denne egenvektor $x$ er den unikke stationære fordeling af $At$, da det er den egenvektor, der svarer til egenværdien 1, og alle andre egenværdier har størrelsen mindre end 1.
+
+Siden $At$ er diagonalisérbar, kan vi repræsentere $At^k$ som $(P^{-1} \cdot At \cdot P)^k = P^{-1} \cdot At^k \cdot P = P^{-1} \cdot D^k \cdot P$. Da k øges, bliver egenværdierne af $D$ (som er de samme som egenværdierne af $At$) hævet til potensen $k$. Da egenværdien 1 har en størrelse af 1 og alle andre egenværdier har en størrelse mindre end 1, bliver egenværdien 1 dominerende som $k$ øges og de andre egenværdier nærmer sig 0. Derfor er den begrænsede fordeling af $(At)^k$ egenvektoren $x$ svarende til egenværdien 1, som er den unikke stationære fordeling af $At$.
+
+Derfor har vi vist, at for en Markov matrice $A$ med stricte positive værdier, hvis $At$ er diagonalisérbar, har den en unik stationær fordeling, og denne stationære fordeling er den begrænsede fordeling af $(At)^k$ når $k$ når uendelig.
