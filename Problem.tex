@@ -4,11 +4,10 @@
 
 \subsection*{Problem 1.}
 
-Ligningen (2.3) viser, at x er lig med en kombination af to ting: $\frac{(1-d)}{N}e$ og $d\cdot L\cdot x$. e er en vektor bestående af kun 1'ere, $E_N$ er en matrix bestående af kun 1'ere.
-Da L er en kendt matrix, og d er en kendt konstant og N er en kendt heltal, kan vi erstatte e og $E_N$ i ligningen (2.3) for at få :
+Ligningen (2.3) viser, at x er lig med en kombination af to ting: $\frac{(1-d)}{N}e$ og $d\cdot L\cdot x$. $e$ er en vektor bestående af kun 1'ere, $E_N$ er en matrix bestående af kun 1'ere.
+Da $L$ er en kendt matrix, og $d$ er en kendt konstant og $N$ er en kendt heltal, kan vi erstatte e og $E_N$ i ligningen (2.3) for at få :
 $$x = \frac{(1-d)}{N}E_N + d\cdot L\cdot x$$
-Vi kan derefter definere $M_d$ som $\frac{(1-d)}{N} \cdot E_N + d \cdot L$
-og erstatte det i ligningen (2.3) for at få:
+Vi kan derefter definere $M_d$ som $\frac{(1-d)}{N} \cdot E_N + d \cdot L$ og erstatte det i ligningen (2.3) for at få:
 $$x = M_d \cdot x$$
 Så ligningen (2.3) kan skrives som ligningen (2.4) hvor $$M_d = \frac{(1-d)}{N}E_N + d \cdot L$$
 Så vi har vist, at ligningen (2.3) kan skrives om som ligningen (2.4)
@@ -17,15 +16,15 @@ Så vi har vist, at ligningen (2.3) kan skrives om som ligningen (2.4)
 
 \subsection*{Problem 2.}
 
-Bevis for at en Markov matrice med en potens m ligeså er en Markov matrice:
+Bevis for at en Markov matrice med en potens $m$ ligeså er en Markov matrice:
 
-Der er forskellige regler før at en Markov matrice (A) er rigtigt. For det første kan A ikke indeholde negative tal. Derudover skal summen af rækkerne give 1. En Markov matrix skal også være en (n X n) matrix. Dette vil sige, at hvis vi tager en Markov matrix A og hæver den til en potens m ($A^m$), vil den resulterende matrix også være en Markov matrix for enhver m = 0,1,2,3,...
+Der er forskellige regler før at en Markov matrice $(A)$ er rigtigt. For det første kan $A$ ikke indeholde negative tal. Derudover skal summen af rækkerne give 1. En Markov matrice skal også være en $n \times n$ matrix. Dette vil sige, at hvis vi tager en Markov matrix $A$ og hæver den til en potens $m$ altså: $A^m$, vil den resulterende matrix også være en Markov matrix for enhver $m = 0,1,2,3,...$
 
-Dette skyldes, at kan hæve en matrix til en potens m simpelthen betyder at multiplicere matricen med sig selv m gange. Derfor vil den resulterende matrix stadig have ikke-negative elementer og hver række vil stadig give summen 1, da disse egenskaber bevares under matricemultiplikation.
+Dette skyldes, at kan hæve en matrix til en potens $m$ simpelthen betyder at multiplicere matricen med sig selv $m$ gange. Derfor vil den resulterende matrix stadig have ikke-negative elementer og hver række vil stadig give summen 1, da disse egenskaber bevares under matrixmultiplikation.
 
 \subsection*{Problem 3.}
 
-Sætning 3.2 siger, at hvis $A \in R^{nxn}$ er en Markov matrix, så er den spektral radius (det største egenværdi i modulus) lig med 1. For at bevise dette, antager vi at der er en egenværdi $\lambda$ med en egenvektor $v$, så $A^kv = \lambda^kv$, hvor k er en positiv heltal. Men da $A^k$ er en Markov matrix, så er summen af hver række = 1, hvilket kan ikke matche med $\lambda^k*v$, hvis $|\lambda| > 1$, da $|\lambda^k|$ vokser større som k øges, så det er en modsætning. Så spektral radius kan kun være mindre eller lig med 1.
+Sætning 3.2 siger, at hvis $A \in R^{nxn}$ er en Markov matrix, så er den spektral radius (det største egenværdi i modulus) lig med 1. For at bevise dette, antager vi at der er en egenværdi $\lambda$ med en egenvektor $v$, så $A^kv = \lambda^kv$, hvor k er et positiv heltal. Men da $A^k$ er en Markov matrix, så er summen af hver række = 1, hvilket kan ikke matche med $\lambda^k*v$, hvis $|\lambda| > 1$, da $|\lambda^k|$ vokser større som k øges, så det er en modsætning. Så spektral radius kan kun være mindre eller lig med 1.
 
 \subsection*{Problem 4.}
 
@@ -58,19 +57,20 @@ Dette strider mod at $A$ er en Markov-matrix, hvor alle elementerne i $A^n$ er p
 
 \subsection*{Problem 6.}
 
-Sætning 3.3 siger, at for en Markov matrice A med strikte positive værdier, findes der en unik sandsynlighedsmatrice x, således at produktet af A transponeret opløftet til potensen k $(At)^k$ nærmer sig en matrice med den samme matrix x gentaget. Denne matrix x kaldes for den stationære fordeling af A.
+Sætning 3.4 siger, at for en Markov matrice A med strikte positive værdier, findes der en unik sandsynlighedsmatrice x, således at produktet af A transponeret opløftet til potensen k $(A^t)^k$ nærmer sig en matrice med den samme matrix x gentaget. Denne matrix $x$ er en unik vektor, hvor alle dele er positive og summere til 1.
 
 PageRank algoritmen, som bruges til at rangere vigtigheden af web sider, bygger på idéen om en "tilfældig surfer" der bevæger sig gennem internettet og følger links. Sandsynligheden for at bevæge sig fra en web side til en anden repræsenteres af en Markov matrice, og den stationære fordeling af denne matrice repræsenterer den langsigtede sandsynlighed for at være på hver side. PageRank algoritmen bruger den stationære fordeling af Markov matricen til at rangere vigtigheden af web siderne, med sider der har en højere sandsynlighed i den stationære fordeling som er betragtes som mere vigtige.
 
-I korthed, sætning 3.3 er relevant for PageRank algoritmen fordi den giver en matematisk begrundelse for at bruge den stationære fordeling af en Markov matrice til at rangere vigtigheden af web sider i algoritmen. Derudover giver sætningen en måde at beregne den stationære fordeling af matricen, som er afgørende for algoritmen.
+I korthed, sætning 3.4 er relevant for PageRank algoritmen fordi den giver en matematisk begrundelse for at bruge den stationære fordeling af en Markov matrice til at rangere vigtigheden af web sider i algoritmen. Derudover giver sætningen en måde at beregne den stationære fordeling af matricen, som er afgørende for algoritmen.
 
 \subsection*{Problem 7.}
 
-For at bevise sætning 3.3 i tilfældet hvor $At$ er diagonalisérbar, vil vi først vise, at At har en unik stationær fordeling, og derefter vil vi vise, at denne stationære fordeling er den begrænsede fordeling af $(At)^k$ når $k$ når uendelig.
+Sætning 3.4 i bygger på at $A$ har $n$ egenværdier, bygger på det faktum, at når $A$ har bestemte egenværdier, så har $A$ og dets transponering $A^t$ samme egenværdier. Først ved vi, at alle egenværdierne for $A^t$ har absolutværdier mindre end 1 undtagen én egenværdi, som er lig 1. Derfor vil matricen $(A^t)^k$ nærme sig egenvektorens tilhørende egenværdien 1. Man lader så x være en egenvektor, der ikke er nul. Derfor er $A^t$ tilknyttet egenværdien 1. Hvilket vil sige at vi så har $A^t x = x$. Da matricen $(A^t)^k$ nærmer til egenvektorens tilhørende egenværdien 1, har vi:
+$$\lim_{k \to \infty} (A^t)^k = x\mathbf{e}^t = [x, x, . . ., x]$$
 
-Siden $At$ er diagonalisérbar, kan vi finde en inverterbar matrice $P$ således at $P^{-1} \cdot At \cdot P = D$ er en diagonal matrice, hvor $D$ har egenværdierne af $At$ på diagonalen.
-Da $A$ er en Markov matrice, har den en reel egenværdi af 1, som svarer til en egenvektor $x$ med positive værdier, der summeres til 1. Denne egenvektor $x$ er den unikke stationære fordeling af $At$, da det er den egenvektor, der svarer til egenværdien 1, og alle andre egenværdier har størrelsen mindre end 1.
 
-Siden $At$ er diagonalisérbar, kan vi repræsentere $At^k$ som $(P^{-1} \cdot At \cdot P)^k = P^{-1} \cdot At^k \cdot P = P^{-1} \cdot D^k \cdot P$. Da k øges, bliver egenværdierne af $D$ (som er de samme som egenværdierne af $At$) hævet til potensen $k$. Da egenværdien 1 har en størrelse af 1 og alle andre egenværdier har en størrelse mindre end 1, bliver egenværdien 1 dominerende som $k$ øges og de andre egenværdier nærmer sig 0. Derfor er den begrænsede fordeling af $(At)^k$ egenvektoren $x$ svarende til egenværdien 1, som er den unikke stationære fordeling af $At$.
 
-Derfor har vi vist, at for en Markov matrice $A$ med stricte positive værdier, hvis $At$ er diagonalisérbar, har den en unik stationær fordeling, og denne stationære fordeling er den begrænsede fordeling af $(At)^k$ når $k$ når uendelig.
+
+
+
+
