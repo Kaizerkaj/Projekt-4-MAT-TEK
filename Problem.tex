@@ -1,0 +1,63 @@
+
+\section{Løsninger til teoretiske problemer:}
+
+
+\subsection*{Problem 1.}
+
+Ligningen (2.3) viser, at x er lig med en kombination af to ting: $\frac{(1-d)}{N}e$ og $d\cdot L\cdot x$. e er en vektor bestående af kun 1'ere, $E_N$ er en matrix bestående af kun 1'ere.
+Da L er en kendt matrix, og d er en kendt konstant og N er en kendt heltal, kan vi erstatte e og $E_N$ i ligningen (2.3) for at få :
+$$x = \frac{(1-d)}{N}E_N + d\cdot L\cdot x$$
+Vi kan derefter definere $M_d$ som $\frac{(1-d)}{N} \cdot E_N + d \cdot L$
+og erstatte det i ligningen (2.3) for at få:
+$$x = M_d \cdot x$$
+Så ligningen (2.3) kan skrives som ligningen (2.4) hvor $$M_d = \frac{(1-d)}{N}E_N + d \cdot L$$
+Så vi har vist, at ligningen (2.3) kan skrives om som ligningen (2.4)
+
+
+
+\subsection*{Problem 2.}
+
+Bevis for at en Markov matrice med en potens m ligeså er en Markov matrice:
+
+Der er forskellige regler før at en Markov matrice (A) er rigtigt. For det første kan A ikke indeholde negative tal. Derudover skal summen af rækkerne give 1. En Markov matrix skal også være en (n X n) matrix. Dette vil sige, at hvis vi tager en Markov matrix A og hæver den til en potens m ($A^m$), vil den resulterende matrix også være en Markov matrix for enhver m = 0,1,2,3,...
+
+Dette skyldes, at at hæve en matrix til en potens m simpelthen betyder at multiplicere matricen med sig selv m gange. Derfor vil den resulterende matrix stadig have ikke-negative elementer og hver række vil stadig give summen 1, da disse egenskaber bevares under matricemultiplikation.
+
+\subsection*{Problem 3.}
+
+Sætning 3.2 siger, at hvis $A \in R^{nxn}$ er en Markov matrix, så er den spektral radius (det største egenværdi i modulus) lig med 1. For at bevise dette, antager vi at der er en egenværdi $\lambda$ med en egenvektor $v$, så $A^kv = \lambda^kv$, hvor k er en positiv heltal. Men da $A^k$ er en Markov matrix, så er summen af hver række = 1, hvilket kan ikke matche med $\lambda^k*v$, hvis $|\lambda| > 1$, da $|\lambda^k|$ vokser større som k øges, så det er en modsætning. Så spektral radius kan kun være mindre eller lig med 1.
+
+\subsection*{Problem 4.}
+
+Hvis $A$ er en Markov matrix og $0 < \tau < 1$, så skal vi bevise at $A_{\tau}$ også er en Markov matrix med kun positive elementer. Det er således fordi at $A$ er en Markov matrix, det betyder at alle elementer er positive og summen af hver række er 1. Når man tager $A_{\tau}$, så er summen af hver række stadig 1, og alle elementer er stadig positive, da man kun er ved at tage potenser af positive tal. Så $A_{\tau}$ er også en Markov matrix med kun positive elementer.
+
+\subsection*{Problem 5.}
+
+Et Markov-matrix $A$ er en kvadratisk matrix med ikke-negative elementer, hvor summen af elementerne i hver kolonne er 1. Det kan bruges til at modellere en Markov-proces, hvor sandsynligheden for at skifte til en fremtidig tilstand kun afhænger af den nuværende tilstand.
+
+For at bevise, at der kun findes én egenværdi $\lambda$ med $|\lambda| = 1$, nemlig $\lambda = 1$, og at den tilsvarende egenplads er $E1 = \text{span}{e}$, kan vi bruge følgende trin:
+\begin{enumerate}
+\item Antag at $\lambda$ er en egenværdi med $|\lambda| = 1$ og $v$ er en tilsvarende egenvektor.
+\item Lad $k$ være et index, således at $||v||_{\infty} = |v_k|$.
+\item Ved definitionen af en egenværdi og egenvektor har vi $Av = \lambda v$. Ved at erstatte $v_k$ for $v$ i denne ligning får vi:
+$||v||{\infty} = |\lambda v_k| = |\lambda v_k| = |A v_k| = |A{ij} v_j| = |A_{ij} \lambda v_j| = |\lambda A_{ij} v_j|$
+\item Nu bruger vi ligningen $||v||{\infty} = |v_k| \leq \sum |v_j|$, og det faktum at $A{ij} > 0$, for at få:
+$||v||{\infty} \leq \sum |A{ij} v_j| \leq \sum A_{ij}|v_j| \leq \sum A_{ij}||v||{\infty} = ||v||{\infty}$
+\item Da begyndelsen og slutningen af ligningen er de samme, skal der være lighed på hver ligningssats.
+\item Derudfra kan vi konkludere, at $v_j = C$ for nogle konstante $C$.
+\item Ved at bruge $||v||{\infty} = |v_k| = C$, får vi $C = ||v||{\infty}$
+\item Derfor $v = Ce$
+\end{enumerate}
+
+Enhver anden egenværdi $\lambda$ skal have $|\lambda| < 1$, da hvis $|\lambda| > 1$, vil ligningen i trin 4 ikke holde stik.
+
+
+\subsection*{Problem 6.}
+
+Sætning 3.3 siger, at for en Markov matrice A med strikte positive værdier, findes der en unik sandsynlighedsmatrice x, således at produktet af A transponeret opløftet til potensen k $(At)^k$ nærmer sig en matrice med den samme matrix x gentaget. Denne matrix x kaldes for den stationære fordeling af A.
+
+PageRank algoritmen, som bruges til at rangere vigtigheden af web sider, bygger på idéen om en "tilfældig surfer" der bevæger sig gennem internettet og følger links. Sandsynligheden for at bevæge sig fra en web side til en anden repræsenteres af en Markov matrice, og den stationære fordeling af denne matrice repræsenterer den langsigtede sandsynlighed for at være på hver side. PageRank algoritmen bruger den stationære fordeling af Markov matricen til at rangere vigtigheden af web siderne, med sider der har en højere sandsynlighed i den stationære fordeling som er betragtes som mere vigtige.
+
+I korthed, sætning 3.3 er relevant for PageRank algoritmen fordi den giver en matematisk begrundelse for at bruge den stationære fordeling af en Markov matrice til at rangere vigtigheden af web sider i algoritmen. Derudover giver sætningen en måde at beregne den stationære fordeling af matricen, som er afgørende for algoritmen.
+
+\subsection*{Problem 7.}
