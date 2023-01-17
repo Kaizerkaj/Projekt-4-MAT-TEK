@@ -31,4 +31,17 @@ For at få konkrete værdier for hvor lang tid det tager metoderne at beregne Pa
     \label{tidsFigur}
 \end{table}
 
-På Tabel~\ref{tidsFigur}, kan det ses at Random Surfer modellen er den klart mest langsomme model som der er.
+\begin{figure}
+    \centering
+    \includegraphics[width = \linewidth]{Kode1.png}
+    \caption{Del af kode fra \texttt{random\_surfer} funktionen}
+\end{figure}
+
+
+På Tabel~\ref{tidsFigur}, kan det ses at Random Surfer modellen er den klart mest langsomme model som der er. Dette giver også mening siden at der for hver iteration af algoritmen skal køres \texttt{surf\_step} funktionen, som beregner sandsynlighedsfordelingen. En hurtig måde der kunne skæres ned på tiden brugt i denne funktion, vil være ved at gemme resultatet af \texttt{surf\_step} og så genbruge det, så det ikke skal beregnes hver gang igen.
+
+Det kan ses ved at kigge på alle resultaterne at Limit-metoden er klart den hurtigste. Denne I dette tilfælde har vi dog ganget matricen med sig selv 20 gange. Denne værdi kan forøges så meget som man vil, på bekostningen af det så vil tage længere tid, men resultatet vil blive mere præcist.
+
+Den rekursive model kan også tilpasses så den tager mindre tid, ved at ændre på \texttt{stopvalue} eller \texttt{max\_iterations}.
+
+
