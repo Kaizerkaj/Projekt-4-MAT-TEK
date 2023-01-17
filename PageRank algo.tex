@@ -11,14 +11,27 @@ Formålet med PageRank algoritmen er at estimere den relative relevans af hjemme
 
 Når man går ind på en hjemmeside vil der oftest være såkaldte hyperlinks der tager brugeren til en anden hjemmeside. Lad os betragte en situation hvor en hjemmeside A kun linker til en hjemmeside B og hjemmeside B kun linker til hjemmeside A. Når dette er tilfældet, og man kører vores algoritme vil man jo netop sidde fast ved disse to hjemmesider under hele forløbet, og således vil det være vanskeligt at bestemme en "ordentlig"  PageRank. For at undgå dette har vi en såkaldt dæmpningsfaktor, $d$ (eng.: damping factor). Formålet med denne er at give en mulighed for at dæmpe algortimen ved algoritmens næste skridt. Dette skal forstås således: Enten udvælges et tilfældigt hyperlink på den nuværende hjemmeside eller udvælges en tilfældig hjemmeside i vores sæt af hjemmesider ($W$). En almindelig værdi for $d$ er 0.85, dvs. 85\% sandsynlighed for at udvælge et tilfældigt hyperlink som hjemmeside $P_i$ linker til og $1 - d = 0.15$ dvs. 15\% sandsynlighed for at udvælge en tilfældig hjemmeside i sættet $W$ (nuværende hjemmeside inkluderet).
 
-\subsection*{Random Surfer Model}
+\subsection*{Tilgange til projektet}
+
+\textbf{Random Surfer Model}
+
+
 For at videreuddybe konceptet beskrevet foroven: Vi har et sæt af hjemmesider, $W$, hvorledes der er $N$-antal hjemmesider. For hver (men ikke nødvendigvis alle) hjemmeside $P_i$ er der et vis antal hyperlinks der fører videre til en anden hjemmeside. Dette er det grundlæggende for at kunne bestemme det såkaldte PageRank. En metode til denne algoritme er \emph{Random Surfer Model}, hvor der indledningsvist udvælges en tilfældig hjemmeside i sættet $W$, dvs. hver hjemmeside har sandsynligheden $\frac{1}{N}$ for at bliver udvalgt i starten. Efterfølgende vil modellen således udvælge et tilfældigt hyperlink på den nuværende hjemmeside $P_i$, som fører til en anden hjemmeside i sættet $W$. Hvert besøg hos hjemmesiden bliver talt og gemt. Hvis modellen har kørt $n$-gange og en hjemmeside $P_k$ er blevet besøgt $N_k$ gange vil $\frac{N_k}{n}$ således være sandsynligheden for at ankomme på hjemmesiden tilfældigt. Og i teorien hvis dette kører nok gange (hvis $n \rightarrow \infty$, eller hvis det måles i tid $t \rightarrow \infty$) vil dette netop være hjemmesiden $P_k$'s såkaldte PageRank. Dæmpningsfaktoren kommer i spil netop der hvor modellen udvælger et tilfældigt hyperlink på nuværende hjemmeside $P_i$, som beskrevet i afsnittet "Dæmnpningsfaktor". Dette er jo som sagt for at bekæmpe instanser hvor en hjemmeside er et såkaldt "sink" (ingen hyperlinks) eller hvis to hjemmesider kun fører til hinanden.
+
+
+\textbf{Rekursive model}
+
+asas
+
+
+\textbf{Matrixformulation}
 
 
 \subsection*{title}
 
 \subsection*{Beskrivelse af programmet}
 
-\subsection*{Tilgange til projektet}
+
+
 
 \subsection*{Illustrationer og eksempler}
