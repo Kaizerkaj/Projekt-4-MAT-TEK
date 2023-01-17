@@ -2,7 +2,7 @@
 \section{Løsninger til teoretiske problemer:}
 
 
-\subsection*{Problem 1.} \label{problem 1}
+\subsection{Problem 1.} \label{problem 1}
 
 Ligningen (2.3) viser, at x er lig med en kombination af to ting: $\frac{(1-d)}{N}e$ og $d\cdot L\cdot x$. $e$ er en vektor bestående af kun 1'ere, $E_N$ er en matrix bestående af kun 1'ere.
 Da $L$ er en kendt matrix, og $d$ er en kendt konstant og $N$ er en kendt heltal, kan vi erstatte e og $E_N$ i ligningen (2.3) for at få :
@@ -14,7 +14,7 @@ Så vi har vist, at ligningen (2.3) kan skrives om som ligningen (2.4)
 
 
 
-\subsection*{Problem 2.}
+\subsection{Problem 2.}
 
 Bevis for at en Markov matrice med en potens $m$ ligeså er en Markov matrice:
 
@@ -22,11 +22,11 @@ Der er forskellige regler før at en Markov matrice $(A)$ er rigtigt. For det f�
 
 Dette skyldes, at kan hæve en matrix til en potens $m$ simpelthen betyder at multiplicere matricen med sig selv $m$ gange. Derfor vil den resulterende matrix stadig have ikke-negative elementer og hver række vil stadig give summen 1, da disse egenskaber bevares under matrixmultiplikation.
 
-\subsection*{Problem 3.}
+\subsection{Problem 3.}
 
 Sætning 3.2 siger, at hvis $A \in R^{nxn}$ er en Markov matrix, så er den spektral radius (det største egenværdi i modulus) lig med 1. For at bevise dette, antager vi at der er en egenværdi $\lambda$ med en egenvektor $v$, så $A^kv = \lambda^kv$, hvor k er et positiv heltal. Men da $A^k$ er en Markov matrix, så er summen af hver række = 1, hvilket kan ikke matche med $\lambda^kv$, hvis $|\lambda| > 1$, da $|\lambda^k|$ vokser større som k øges, så det er en modsætning. Så spektral radius kan kun være mindre eller lig med 1.
 
-\subsection*{Problem 4.}
+\subsection{Problem 4.}
 
 Lad $A \in \mathbb{R}^{n \times n}$ være en Markov-matrix og $0 < \tau < 1$. Vi ser på: 
 $$A_\tau = \tau A + \frac{1-\tau}{n} \mathbf{E}_n$$
@@ -50,7 +50,7 @@ $$\tau(A_{i1} + A_{i2} + ... + A_{in}) + (1 - \tau) = 1$$
 
 Som det ses i de ovenstående ligninger, er summen af elementerne i række "i" i $A_\tau$ lig med 1, hvilket betyder at $A_\tau$ er en Markov-matrix.
 
-\subsection*{Problem 5.}
+\subsection{Problem 5.}
 
 Hvis $A$ er en Markov-matrix med stærkt positive elementer ($a_{ij} > 0$ for alle $i$,$j$), kan man bevise at der kun er én egenværdi $\lambda$ med $|\lambda| = 1$, nemlig $\lambda = 1$, og at den tilsvarende egenvektor er $E_1 = span {\mathbf{e}}$. Enhver anden egenværdi har en modulus mindre end 1.
 
@@ -67,7 +67,7 @@ $$|\lambda^n||\mathbf{v}||\infty > ||\mathbf{v}||_\infty$$
 Dette strider mod at $A$ er en Markov-matrix, hvor alle elementerne i $A^n$ er positive og summen er 1. Derfor skal alle andre egenværdier have en modulus mindre end 1.
 
 
-\subsection*{Problem 6.}
+\subsection{Problem 6.}
 
 Sætning 3.4 siger, at for en Markov matrice A med strikte positive værdier, findes der en unik sandsynlighedsmatrice x, således at produktet af A transponeret opløftet til potensen k $(A^t)^k$ nærmer sig en matrice med den samme matrix x gentaget. Denne matrix $x$ er en unik vektor, hvor alle dele er positive og summere til 1.
 
@@ -75,7 +75,7 @@ PageRank algoritmen, som bruges til at rangere vigtigheden af web sider, bygger 
 
 I korthed, sætning 3.4 er relevant for PageRank algoritmen fordi den giver en matematisk begrundelse for at bruge den stationære fordeling af en Markov matrice til at rangere vigtigheden af web sider i algoritmen. Derudover giver sætningen en måde at beregne den stationære fordeling af matricen, som er afgørende for algoritmen.
 
-\subsection*{Problem 7.}
+\subsection{Problem 7.}
 
 Sætning 3.4 siger, at hvis $A$ er en $n \times n$ matrice med $n$ forskellige egenværdier, så findes der en matrice $V$, hvis kolonner er egenvektorer af $A$ og en diagonalmatrice $D$, hvis diagonalelementer er egenværdierne af $A$, således at $A = VDV^{-1}$.
 
