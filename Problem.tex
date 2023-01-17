@@ -81,10 +81,13 @@ For at bevise dette i tilfælde, hvor $A$ har $n$ forskellige egenværdier, kan 
 Således $B^k = V D^{k} V^{t} = V diag(\lambda_1^k, \lambda_2^k, . . . \lambda_n^k) V^{t}$. Da egenværdierne af $A$ er forskellige, er matricen $V$ inverterbar, så vi kan skrive $A = VDV^{-1}$.
 
 Dermed er Sætning 3.4 bevist for tilfældet, hvor $A$ har $n$ forskellige egenværdier.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Sætning 3.4 siger at der findes en $n \times n$ matrix $A$, der har n forskellige egenvektore. I det tilfælde findes der en basisvektor $V = [v_1,v_2,...v_n]$, og en diagonalmatrice $D$ med egenværdierne i diagonalen. I dette tilfælde kan det skrives som følgemde: $A=VDV^1$.
 
-For at vise at $A$ har n forskellige egemværdier, kan vi bruge den viden om at $B = VDV^{-1}$ faktisk er diagonaliserbar.Vi ved, at $B^k = V D^k (V^{-1})^t = V D^k V^t$, hvor $D^k$ er matricen der opnås ved at løfte hver del i $D$ til $k$'ende potens. Ved at bruge dette kan man vise, at grænsen af $A^k$, hvor k løber mod uendeligt. Det kommer til at se ud som følgende:
+
+Sætning 3.4 siger at der findes en $n \times n$ matrix $A$, der har n forskellige egenvektore. I det tilfælde findes der et $V = [v_1,v_2,...v_n]$, hvor ${v_j}$ kolonner bestående af egenvektore. Derudover er diagonalmatricen $D$ med egenværdierne i diagonalen. Dette kan samles som følgende:  $A=VDV^1$.
+
+Nu kan vi så lade $L = \lim_{k \rightarrow \infty} A^t$, hvor vi bruger viden fra opgaven om at $B=VDV^1$ er diagonaliserbar. Vi ved, at $B^k = V D^k (V^{-1})^t = V D^k V^t$. Det kommer til at se ud som følgende:
 
 $$\lim_{k \rightarrow \infty} A^k = \lim_{k \rightarrow \infty} V D^k V^{-1} $$
 
@@ -94,16 +97,10 @@ $$V \lim_{k \rightarrow \infty} D^k V^{-1} = V \text{diag}(1, 1, \dots, 1) V^{-1
 Og til sidst ses det hvordan vi får identitetsmatricen $I$
 $$ VV^{-1} = I$$
 
-Nu kan vi så lade $L = \lim_{k \rightarrow \infty} A^k$, da alle kolonner i L skal være egenvektorer af At med egenværdi 1, og da kolonnerne i L er multipler af hinanden, kan man konkludere, at L er en Markovmatrix.
+Lad $L = \lim_{k \rightarrow \infty} A^t$, da alle kolonner i L skal være egenvektorer af At med egenværdi 1, og da kolonnerne i L er multipler af hinanden, kan man konkludere, at L er en Markovmatrix.
 
-%Markov matricen er en matrice hvis alle elementer er positive og hvis kolonnerne summe til 1.
+Markov matricen er en matrice hvis alle elementer er positive og hvis kolonnerne summe til 1.
 
-%Til sidst, da L er en Markovmatrix, kolonnerne i L er multipler af hinanden, og er egenvektorer af At med egenværdi 1, kan man konkludere, at A har n forskellige egenværdier.
+Til sidst, da L er en Markovmatrix, kolonnerne i L er multipler af hinanden, og er egenvektorer af At med egenværdi 1, kan man konkludere, at A har n forskellige egenværdier.
 
-%Derfor er sætning 3.4 bevist for tilfældet, hvor A har n forskellige egenværdier
-
-
-
-
-
-
+Derfor er sætning 3.4 bevist for tilfældet, hvor A har n forskellige egenværdier.
