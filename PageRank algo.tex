@@ -13,15 +13,15 @@ Når man går ind på en hjemmeside vil der oftest være såkaldte hyperlinks de
 
 \subsection*{Tilgange til projektet}
 
-\textbf{Random Surfer Model}
+\subsubsection*{Random Surfer Model}
 
 
 For at videreuddybe konceptet beskrevet foroven: Vi har et sæt af hjemmesider, $W$, hvorledes der er $N$-antal hjemmesider. For hver (men ikke nødvendigvis alle) hjemmeside $P_i$ er der et vis antal hyperlinks der fører videre til en anden hjemmeside. Dette er det grundlæggende for at kunne bestemme det såkaldte PageRank. En metode til denne algoritme er \emph{Random Surfer Model}, hvor der indledningsvist udvælges en tilfældig hjemmeside i sættet $W$, dvs. hver hjemmeside har sandsynligheden $\frac{1}{N}$ for at bliver udvalgt i starten. Efterfølgende vil modellen således udvælge et tilfældigt hyperlink på den nuværende hjemmeside $P_i$, som fører til en anden hjemmeside i sættet $W$. Hvert besøg hos hjemmesiden bliver talt og gemt. Hvis modellen har kørt $n$-gange og en hjemmeside $P_k$ er blevet besøgt $N_k$ gange vil $\frac{N_k}{n}$ således være sandsynligheden for at ankomme på hjemmesiden tilfældigt. Og i teorien hvis dette kører nok gange (hvis $n \rightarrow \infty$, eller hvis det måles i tid $t \rightarrow \infty$) vil dette netop være hjemmesiden $P_k$'s såkaldte PageRank. Dæmpningsfaktoren kommer i spil netop der hvor modellen udvælger et tilfældigt hyperlink på nuværende hjemmeside $P_i$, som beskrevet i afsnittet "Dæmnpningsfaktor". Dette er jo som sagt for at bekæmpe instanser hvor en hjemmeside er et såkaldt "sink" (ingen hyperlinks) eller hvis to hjemmesider kun fører til hinanden.
 
 
-\textbf{Rekursive model}
+\subsubsection*{Rekursive model}
 
-Den reukursive formel er givet ved
+Den rekursive formel er givet ved
 \begin{equation} \label{udgangspunkt}
     PR(p_i)_{n+1}=\frac{1-d}N+d\sum_{p_j\in Inbound(p_i)}\frac{PR(p_j)_n}{\left|Outbound(p_j)\right|}
 \end{equation}
@@ -36,9 +36,73 @@ Det andet led i \eqref{udgangspunkt} tager hensyn til situationen hvor der blive
 \end{equation*}
 Dette er i virkeligheden chancen for at der tilfældigvis landes på $p_i$ ud fra alle de andre websites som $p_j$ linker til ved $\frac1{\left|Outbound(p_j)\right|}$. Denne chance er så vægtet med $PR(p_j)$, da PageRank af $p_j$ angiver chancen for at befinde sig på $p_j$, og det skal være tilfældet, da man ellers ikke kan bevæge sig fra $p_j$ til $p_i$. Der bliver også vægtet med dæmpningsfaktoren, da det også skal være tilfældet at der bliver bevæget sig fra $p_j$ til et website den forbindet til, og ikke bare til en tilfældig website ud af alle websites med en ligelig sandsynlighedsfordeling.
 
+\newcommand{\ve}[1]{\textbf{#1}}
+\newlength{\tHeight}
+\newlength{\tDepth}
+\newsavebox{\textBox}
+\newcommand{\fixHeight}[2][0.7cm]{
+    \sbox{\textBox}{#2}
+    \setlength{\tHeight}{\ht\textBox}
+    \setlength{\tDepth}{\dp\textBox}
+    \usebox{\textBox}\rule[-.5\dimexpr#1-\tHeight+\tDepth\relax]{0cm}{#1}
+}
+\subsubsection*{Matrixformulation}
+Udtrykket for PageRank som blev brugt til at udlede den \textit{Rekursive Model} kan vektorises, så der beregnes alle PageRanks på en gang i en vektor \ve{x}
+\begin{equation*}
+    \ve{x} =
+    \begin{bmatrix}
+        \fixHeight{$PR(p_1)$} \\
+        \fixHeight{$PR(p_1)$} \\ 
+        \fixHeight{\vdots} \\
+        \fixHeight{$PR(p_N)$}
+    \end{bmatrix}
+\end{equation*}
 
+Matricen \ve L dannes og defineres
+\begin{equation*}
+    L_{ij} =
+    \begin{cases}
+        \frac{1}{\displaystyle\left|Outbound(p_j)\right|} & \text{ hvis } p_j \in Inbound(p_i)\\
+        0 & \text{ hvis } p_j \notin Inbound(p_i)
+    \end{cases}
+\end{equation*}
 
-\textbf{Matrixformulation}
+vektoren \ve{e} defineres også
+\begin{equation*}
+    \ve{e} =
+    \begin{bmatrix}
+        \fixHeight{1} \\
+        \fixHeight{1} \\ 
+        \fixHeight{\vdots} \\
+        \fixHeight{1}
+    \end{bmatrix}
+\end{equation*}
+
+Så gælder der
+\begin{equation} \label{eq:vektoriseret}
+    \ve{x} = \frac{1 - d}{N}\ve{e} + d\cdot\ve{L}\ve{x}
+\end{equation}
+
+Som der vises ved på side~\pageref{problem 1} ved \textbf{Problem 1} kan \eqref{eq:vektoriseret} omskrives til
+\begin{equation*}
+    \ve{x} = \ve{M}_d\ve{x}
+\end{equation*}
+
+hvor
+\begin{equation*}
+    \ve{M}_d = \frac{1-d}{N}\ve{E}_N + d\cdot\ve{L}
+\end{equation*}
+
+hvor $\ve{E}_N$ er en $N\times N$ matrice kun med 1-taller.
+
+Det betyder at \ve{x} er en egenvektor for $\ve{M}_d$ med tilhørende egenværdi 1.
+
+Ideen bag matrixformulationen er så, at hvis der er en egenvektor med tilhørende egenværdi 1, som er en sandsynlighedsvektor, vil den være løsningen til problemet. Dette gælder også fordi det viser sig at der kun er en egenvektor med tilhørende egenværdi på 1, som opfylder de betingelser. 
+
+Det viser sig også at \ve{x} kan estimeres ved at bruge
+\begin{equation*}
+    \lim_{k\to\infty}\ve{M}^k_d=[\ve{x}, \ve{x}, \dots\ve{x}]
+\end{equation*}
 
 
 \subsection*{title}
