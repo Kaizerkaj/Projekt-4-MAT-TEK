@@ -21,11 +21,11 @@ For at få konkrete værdier for hvor lang tid det tager metoderne at beregne Pa
 \begin{table}[!h]
     \centering
     \begin{tabular}{c|l|l|l|l}
-        Tid [sekunder] & Random Surfer & Recursive & Limit & Eigenvectors \\
+        Antal hjemmesider & Random Surfer & Recursive & Limit & Eigenvectors \\
         \hline
-        $N = 10$       & 1.8134   & 0.0000   & 0.0000   & 0.0010   \\
-        $N = 75$       & 3.4769   & 0.0110   & 0.0020   & 0.0028   \\
-        $N = 250$      & 7.6943   & 0.0860   & 0.0090   & 0.0699
+        $N = 10$       & 1.8134 s   & 0.0000 s   & 0.0000 s   & 0.0010 s   \\
+        $N = 75$       & 3.4769 s   & 0.0110 s   & 0.0020 s   & 0.0028   \\
+        $N = 250$      & 7.6943 s   & 0.0860 s   & 0.0090 s   & 0.0699
     \end{tabular}
     \caption{En tabel over metodernes tidsforbrug afhængigt at $n$, antallet af webpages i simulationen. Når der står "0.0000" så betyder det ikke faktisk 0, men skyldes numeriske fejl fra python fordi tallet er så lille. Her refererer "Random Surfer" til Random surfer modellen med en dæmpningsfaktor, "Recursive" er den rekursive model, "Limit" er hvor der anvendes at $A$ er en \textit{Markov matrix} med positive værdier og "Eigenvectors er hvor der findes den korrekte egenvektor og den skaleres tilpasseligt. Naturligvis er dæmpningsfaktoren $d$ ens for alle modellerne som er $d = 0.85$.}
     \label{tidsFigur}
