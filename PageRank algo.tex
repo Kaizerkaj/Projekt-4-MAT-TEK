@@ -21,7 +21,21 @@ For at videreuddybe konceptet beskrevet foroven: Vi har et sæt af hjemmesider, 
 
 \textbf{Rekursive model}
 
-asas
+Den reukursive formel er givet ved
+\begin{equation} \label{udgangspunkt}
+    PR(p_i)_{n+1}=\frac{1-d}N+d\sum_{p_j\in Inbound(p_i)}\frac{PR(p_j)_n}{\left|Outbound(p_j)\right|}
+\end{equation}
+
+Her er $PR(p_i)$ PageRank for $p_i$. $Inbound(p_i)$ er det sæt af websites som linker til $p_i$ og $Outbound(p_j)$ er det sæt af websites som linker væk fra $p_j$.
+
+Det første led i \eqref{udgangspunkt} tager hensyn til situationen hvor der linkes til en ny tilfældig website pga. dæmpningsfaktoren. Dette er udtrykt matematisk ved at der er lige stor sandsynlighed for at lande på alle, så chancen er $\frac1N$, som så bliver vægtet med $1-d$, da $1-d$ er chancen for at der skal bevæges til et tilfældigt website.
+
+Det andet led i \eqref{udgangspunkt} tager hensyn til situationen hvor der bliver bevæget sig hen til websitet fra en anden website. Denne kommer fra at summere chancen for at komme til $p_i$ ved for alle de websites $p_j$ som linker til $p_i$. Chancen for at komme til $p_i$ fra et website $p_j$, som linker til $p_i$ er
+\begin{equation*}
+    \frac{d\cdot PR(p_j)}{\left|Outbound(p_j)\right|}
+\end{equation*}
+Dette er i virkeligheden chancen for at der tilfældigvis landes på $p_i$ ud fra alle de andre websites som $p_j$ linker til ved $\frac1{\left|Outbound(p_j)\right|}$. Denne chance er så vægtet med $PR(p_j)$, da PageRank af $p_j$ angiver chancen for at befinde sig på $p_j$, og det skal være tilfældet, da man ellers ikke kan bevæge sig fra $p_j$ til $p_i$. Der bliver også vægtet med dæmpningsfaktoren, da det også skal være tilfældet at der bliver bevæget sig fra $p_j$ til et website den forbindet til, og ikke bare til en tilfældig website ud af alle websites med en ligelig sandsynlighedsfordeling.
+
 
 
 \textbf{Matrixformulation}
