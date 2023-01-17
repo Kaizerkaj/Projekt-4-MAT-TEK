@@ -4,20 +4,39 @@
 
 \subsection{Programmering opgaver 1.}
 
+Formålet med denne opgave var at lave et script indeholdende funktioner som kunne beregne PageRank beskrevet ved metoden for \emph{Random Surfer Model}. Vi lavede en funktion \texttt{random\_step}. Det denne funktion gjorde meget kort fortalt var at give sandsynligheden for at udvælge de enkelte sider. I denne funktion skulle man angive hvilken hjemmeside man starter fra. Her er et eksempel med $d = 0.85$ og hvor vi starter på hjemmesiden $A1.html$:
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = \linewidth]{Billeder/surf_step_test.png}
+    \caption{Eksempel af funktionen \texttt{random\_step}.}
+    \label{fig:my_label}
+\end{figure}
 
+Funktionen har inputtet: \texttt{random\_step(web,page,d)}, hvor web er sættet $W$. Denne funktion bruges så til funktionen \texttt{random\_surf} som kan bestemme hjemmesidernes PageRank. Denne funktion tager inputtet: \texttt{random\_surf(web,d,n)}. $web$ og $d$ er det samme som før, hvor $n$ er hvor mange gange funktionen skal køre (jf. betydningen af $n$ i afsnittet \emph{Random Surfer Model}). Her er et eksempel på funktionen med samme sæt $W$ som før:
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width = \linewidth]{Billeder/random_surf_test.png}
+    \caption{Eksempel af funktionen \texttt{random\_surf}.}
+    \label{fig:my_label}
+\end{figure}
+
+For at se nærmere på koden bedes du henvises til bilag.
 
 \subsection{Programmering opgaver 2.}
 
-
+FORSTÅR IK RECURSIVE TBH
 
 \subsection{Programmering opgaver 3.}
 
 
-\subsection{Tids overvejelser}
-\subsubsection{Hvordan beregnes tiden af en funktion i Python}
+\subsection*{Programmering opgaver 4.}
+Programmeringsopgave 4 havde til formål at modificere vores funktioner således at den kan håndtere "sinks". Når en hjemmeside kaldes for en sink skal det forstås 
+
+\subsection*{Tidsovervejelser}
+\subsubsection*{Hvordan beregnes tiden af en funktion i Python}
 For at få konkrete værdier for hvor lang tid det tager metoderne at beregne PageRank værdierne, så brugte vi \emph{time} modulet indbygget i Python. Her kan der bruges \texttt{time.time()} til at gemme en start-tid før funktionen er startet og en tid når den er stoppet. Den totale tid det tager beregnes så ved at trække start-tiden fra stop-tiden.
 
-\subsubsection{Analyse af data}
+\subsubsection{Analyse af Tidsforbrug}
 \begin{table}[!h]
     \centering
     \begin{tabular}{c|l|l|l|l}
@@ -33,7 +52,7 @@ For at få konkrete værdier for hvor lang tid det tager metoderne at beregne Pa
 
 \begin{figure}
     \centering
-    \includegraphics[width = \linewidth]{Kode1.png}
+    \includegraphics[width = \linewidth]{Billeder/Kode1.png}
     \caption{Del af kode fra \texttt{random\_surfer} funktionen}
 \end{figure}
 

@@ -24,7 +24,7 @@ Dette skyldes, at kan hæve en matrix til en potens $m$ simpelthen betyder at mu
 
 \subsection{Problem 3.}
 
-Sætning 3.2 siger, at hvis $A \in R^{nxn}$ er en Markov matrix, så er den spektral radius (det største egenværdi i modulus) lig med 1. For at bevise dette, antager vi at der er en egenværdi $\lambda$ med en egenvektor $v$, så $A^kv = \lambda^kv$, hvor k er et positiv heltal. Men da $A^k$ er en Markov matrix, så er summen af hver række = 1, hvilket kan ikke matche med $\lambda^kv$, hvis $|\lambda| > 1$, da $|\lambda^k|$ vokser større som k øges, så det er en modsætning. Så spektral radius kan kun være mindre eller lig med 1.
+Sætning 3.2 siger, at hvis $A \in R^{nxn}$ er en Markov matrice, så er den spektral radius (det største egenværdi i modulus) lig med 1. For at bevise dette, antager vi at der er en egenværdi $\lambda$ med en egenvektor $v$, så $A^kv = \lambda^kv$, hvor k er et positiv heltal. Men da $A^k$ er en Markov matrix, så er summen af hver række = 1, hvilket kan ikke matche med $\lambda^kv$, hvis $|\lambda| > 1$, da $|\lambda^k|$ vokser større som k øges, så det er en modsætning. Så spektral radius kan kun være mindre eller lig med 1.
 
 \subsection{Problem 4.}
 
@@ -67,10 +67,7 @@ $$|\lambda^n||\mathbf{v}||\infty > ||\mathbf{v}||_\infty$$
 Dette strider mod at $A$ er en Markov-matrix, hvor alle elementerne i $A^n$ er positive og summen er 1. Derfor skal alle andre egenværdier have en modulus mindre end 1.
 
 
-\subsection{Problem 6.}
-
-Sætning 3.4 siger, at for en Markov matrice A med strikte positive værdier, findes der en unik sandsynlighedsmatrice x, således at produktet af A transponeret opløftet til potensen k $(A^t)^k$ nærmer sig en matrice med den samme matrix x gentaget. Denne matrix $x$ er en unik vektor, hvor alle dele er positive og summere til 1.
-
+\subsection*{Problem 6.}
 PageRank algoritmen, som bruges til at rangere vigtigheden af web sider, bygger på idéen om en "tilfældig surfer" der bevæger sig gennem internettet og følger links. Sandsynligheden for at bevæge sig fra en web side til en anden repræsenteres af en Markov matrice, og den stationære fordeling af denne matrice repræsenterer den langsigtede sandsynlighed for at være på hver side. PageRank algoritmen bruger den stationære fordeling af Markov matricen til at rangere vigtigheden af web siderne, med sider der har en højere sandsynlighed i den stationære fordeling som er betragtes som mere vigtige.
 
 I korthed, sætning 3.4 er relevant for PageRank algoritmen fordi den giver en matematisk begrundelse for at bruge den stationære fordeling af en Markov matrice til at rangere vigtigheden af web sider i algoritmen. Derudover giver sætningen en måde at beregne den stationære fordeling af matricen, som er afgørende for algoritmen.
@@ -79,11 +76,31 @@ I korthed, sætning 3.4 er relevant for PageRank algoritmen fordi den giver en m
 
 Sætning 3.4 siger, at hvis $A$ er en $n \times n$ matrice med $n$ forskellige egenværdier, så findes der en matrice $V$, hvis kolonner er egenvektorer af $A$ og en diagonalmatrice $D$, hvis diagonalelementer er egenværdierne af $A$, således at $A = VDV^{-1}$.
 
-For at bevise dette i tilfælde, hvor $A$ har $n$ forskellige egenværdier, kan vi bruge faktummet, at $B = V DV^{t}$ er diagonaliserbar. Vi ved, at $B^k = V D^{k} V^{t}$, hvor $D^{k}$ er matricen, der opnås ved at løfte hver del i $D$ til $k$'tende potens. Da $D$ er en diagonalmatrice, er dets egenvektorer de standard basisvektorer, og at løfte hver del til $k^{th}$ potens multiplicerer den tilsvarende egenværdi med $k$.
+For at bevise dette i tilfælde, hvor $A$ har $n$ forskellige egenværdier, kan vi bruge faktummet, at $B = V DV^{t}$ er diagonaliserbar. Vi ved, at $B^k = V D^{k} V^{t}$, hvor $D^{k}$ er matricen, der opnås ved at løfte hver del i $D$ til $k$'ende potens. Da $D$ er en diagonalmatrice, er dets egenvektorer de standard basisvektorer, og at løfte hver del til $k$'ende potens multiplicerer den tilsvarende egenværdi med $k$.
 
 Således $B^k = V D^{k} V^{t} = V diag(\lambda_1^k, \lambda_2^k, . . . \lambda_n^k) V^{t}$. Da egenværdierne af $A$ er forskellige, er matricen $V$ inverterbar, så vi kan skrive $A = VDV^{-1}$.
 
 Dermed er Sætning 3.4 bevist for tilfældet, hvor $A$ har $n$ forskellige egenværdier.
+
+Sætning 3.4 siger at der findes en $n \times n$ matrix $A$, der har n forskellige egenvektore. I det tilfælde findes der en basisvektor $V = [v_1,v_2,...v_n]$, og en diagonalmatrice $D$ med egenværdierne i diagonalen. I dette tilfælde kan det skrives som følgemde: $A=VDV^1$.
+
+For at vise at $A$ har n forskellige egemværdier, kan vi bruge den viden om at $B = VDV^{-1}$ faktisk er diagonaliserbar.Vi ved, at $B^k = V D^k (V^{-1})^t = V D^k V^t$, hvor $D^k$ er matricen der opnås ved at løfte hver del i $D$ til $k$'ende potens. Ved at bruge dette kan man vise, at grænsen af $A^k$, hvor k løber mod uendeligt. Det kommer til at se ud som følgende:
+
+$$\lim_{k \rightarrow \infty} A^k = \lim_{k \rightarrow \infty} V D^k V^{-1} $$
+
+Her bliver $D$ til diagonalmatricen, da $k$ løber mod uendeligt. 
+$$V \lim_{k \rightarrow \infty} D^k V^{-1} = V \text{diag}(1, 1, \dots, 1) V^{-1} $$
+
+Og til sidst ses det hvordan vi får identitetsmatricen $I$
+$$ VV^{-1} = I$$
+
+Nu kan vi så lade $L = \lim_{k \rightarrow \infty} A^k$, da alle kolonner i L skal være egenvektorer af At med egenværdi 1, og da kolonnerne i L er multipler af hinanden, kan man konkludere, at L er en Markovmatrix.
+
+%Markov matricen er en matrice hvis alle elementer er positive og hvis kolonnerne summe til 1.
+
+%Til sidst, da L er en Markovmatrix, kolonnerne i L er multipler af hinanden, og er egenvektorer af At med egenværdi 1, kan man konkludere, at A har n forskellige egenværdier.
+
+%Derfor er sætning 3.4 bevist for tilfældet, hvor A har n forskellige egenværdier
 
 
 
