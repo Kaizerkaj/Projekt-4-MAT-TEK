@@ -27,33 +27,43 @@ Dette skyldes, at kan hæve en matrix til en potens $m$ simpelthen betyder at mu
 Sætning 3.2 siger, at hvis $A \in R^{nxn}$ er en Markov matrix, så er den spektral radius (det største egenværdi i modulus) lig med 1. For at bevise dette, antager vi at der er en egenværdi $\lambda$ med en egenvektor $v$, så $A^kv = \lambda^kv$, hvor k er et positiv heltal. Men da $A^k$ er en Markov matrix, så er summen af hver række = 1, hvilket kan ikke matche med $\lambda^kv$, hvis $|\lambda| > 1$, da $|\lambda^k|$ vokser større som k øges, så det er en modsætning. Så spektral radius kan kun være mindre eller lig med 1.
 
 \subsection*{Problem 4.}
-ATT: Mangler lidt.
+
+Lad $A \in \mathbb{R}^{n \times n}$ være en Markov-matrix og $0 < \tau < 1$. Vi ser på: 
+$$A_\tau = \tau A + \frac{1-\tau}{n} \mathbf{E}_n$$
+hvor $\mathbf{E}_n = \begin{bmatrix} 1 & 1 & ... & 1\\ \vdots & \vdots & \ddots & \vdots\\ 1 & 1 & ... & 1 \end{bmatrix}$ er en $n \times n$ matrix af ens tal.\\
+
+For at vise, at $A_\tau$ også er en Markov-matrix, skal vi bevise, at:
+\begin{enumerate}
+    \item Alle elementer i $A_\tau$ er ikke-negative.
+    \item Summen af alle elementer i hver række i $A_\tau$ er lig med 1.
+    \item Da $\tau A$ og $\frac{1-\tau}{n} \mathbf{E}n$ begge er ikke-negative matricer og vi tilføjer dem sammen, er alle elementer i $A\tau$ også non-negative.
+    \item Summen af elementerne i række "i" i $A_\tau$ er:
+    
+    $$(A_\tau)_{i1} + (A_\tau)_{i2} + ... + (A_\tau)_{in}$$ 
+
+$$\tau A_{i1} + \tau A_{i2} + ... + \tau A_{in} + \frac{(1 - \tau)}{n}\cdot (1+1+...+1)$$
+
+$$\tau(A_{i1} + A_{i2} + ... + A_{in}) + (1 - \tau) = 1$$
+
+\end{enumerate}
 
 
-Hvis $A$ er en Markov matrix og $0 < \tau < 1$, så skal vi bevise at $A_{\tau}$ også er en Markov matrix med kun positive elementer. Det er således fordi at $A$ er en Markov matrix, det betyder at alle elementer er positive og summen af hver række er 1. Når man tager $A_{\tau}$, så er summen af hver række stadig 1, og alle elementer er stadig positive, da man kun er ved at tage potenser af positive tal. Så $A_{\tau}$ er også en Markov matrix med kun positive elementer.
+Som det ses i de ovenstående ligninger, er summen af elementerne i række "i" i $A_\tau$ lig med 1, hvilket betyder at $A_\tau$ er en Markov-matrix.
 
 \subsection*{Problem 5.}
 
 Hvis $A$ er en Markov-matrix med stærkt positive elementer ($a_{ij} > 0$ for alle $i$,$j$), kan man bevise at der kun er én egenværdi $\lambda$ med $|\lambda| = 1$, nemlig $\lambda = 1$, og at den tilsvarende egenvektor er $E_1 = span {\mathbf{e}}$. Enhver anden egenværdi har en modulus mindre end 1.
 
-Man kan bevise dette ved at antage at $\lambda$ er en egenværdi med $|\lambda| = 1$ og $\mathbf{v}$ er en tilsvarende egenvektor. Lad $k$ være et index således at $||\mathbf{v}||_\infty = |v_k|$. Så kan man skrive:
-
+Man kan bevise dette ved at antage at $\lambda$ er en egenværdi med $|\lambda| = 1$ og $\mathbf{v}$ er en tilsvarende egenvektor. Lad $k$ være en indeksering således at $||\mathbf{v}||_\infty = |v_k|$. Så kan man skrive:
 $$||\mathbf{v}||_\infty = |\lambda ||v_k| = |\lambda v_k| = |A\mathbf{v_k}|$$
-
 Ved hjælp af trekantens lighed kan man bevise at:
-
 $$||\mathbf{v}||\infty = |A\mathbf{v_k}| \leq \sum{j=1}^n |a_{jk} v_j| \leq \sum_{j=1}^n a_{jk} |v_j|$$
-
 Da matricen $A$ er en Markov-matrix og egenvektoren $\mathbf{v}$ har positive elementer, kan man skrive:
-
 $$||\mathbf{v}||\infty \leq \sum{j=1}^n a_{jk} |v_j| = ||\mathbf{v}||_\infty$$
-
-Dette er kun sandt hvis alle de ligheder er lige. Det betyder at alle elementerne i egenvektoren er ens og egenvektoren er en multiplum af vektoren med alle 1'ere. Derfor er den eneste egenværdi med $|\lambda| = 1$ $\lambda = 1$ og den tilsvarende egenvektor er $E_1 = span {\mathbf{e}}$.
+Dette er kun sandt hvis alle de ligheder er lige. Det betyder at alle elementerne i egenvektoren er ens og egenvektoren er en multiplum af vektoren med alle 1'ere. Derfor er den eneste egenværdi med $|\lambda| = 1$ $\lambda = 1$ og den tilsvarende egenvektor er $E_1 = span \{\mathbf{e}\}$.
 
 For at vise at andre egenværdier har en modulus mindre end 1, lader vi $\lambda$ være en egenværdi af $A$ således at $|\lambda| > 1$ og $\mathbf{v}$ være en tilsvarende egenvektor. Så har man:
-
-$$||A^n\mathbf{v}||\infty = |\lambda^n||\mathbf{v}||\infty > ||\mathbf{v}||_\infty$$
-
+$$|\lambda^n||\mathbf{v}||\infty > ||\mathbf{v}||_\infty$$
 Dette strider mod at $A$ er en Markov-matrix, hvor alle elementerne i $A^n$ er positive og summen er 1. Derfor skal alle andre egenværdier have en modulus mindre end 1.
 
 
@@ -65,13 +75,15 @@ PageRank algoritmen, som bruges til at rangere vigtigheden af web sider, bygger 
 
 I korthed, sætning 3.4 er relevant for PageRank algoritmen fordi den giver en matematisk begrundelse for at bruge den stationære fordeling af en Markov matrice til at rangere vigtigheden af web sider i algoritmen. Derudover giver sætningen en måde at beregne den stationære fordeling af matricen, som er afgørende for algoritmen.
 
-\newpage
 \subsection*{Problem 7.}
 
-Sætning 3.4 i bygger på at $A$ har $n$ egenværdier, bygger på det faktum, at når $A$ har bestemte egenværdier, så har $A$ og dets transponering $A^t$ samme egenværdier. Først ved vi, at alle egenværdierne for $A^t$ har værdier mindre end 1 undtagen én egenværdi, som er lig 1. Derfor vil matricen $(A^t)^k$ nærme sig egenvektorens tilhørende egenværdi 1. Man lader så x være en egenvektor, der ikke er nul. Derfor er $A^t$ tilknyttet egenværdien 1. Hvilket vil sige at vi så har $A^t x = x$. Da matricen $(A^t)^k$ nærmer til egenvektorens tilhørende egenværdien 1, har vi:
-$$\lim_{k \to \infty} (A^t)^k = x\mathbf{e}^t = [x, x, . . ., x]$$
-Det vil altså sige at summen af vektoren $x$ er lig 1.
+Sætning 3.4 siger, at hvis $A$ er en $n \times n$ matrice med $n$ forskellige egenværdier, så findes der en matrice $V$, hvis kolonner er egenvektorer af $A$ og en diagonalmatrice $D$, hvis diagonalelementer er egenværdierne af $A$, således at $A = VDV^{-1}$.
 
+For at bevise dette i tilfælde, hvor $A$ har $n$ forskellige egenværdier, kan vi bruge faktummet, at $B = V DV^{t}$ er diagonaliserbar. Vi ved, at $B^k = V D^{k} V^{t}$, hvor $D^{k}$ er matricen, der opnås ved at løfte hver del i $D$ til $k$'tende potens. Da $D$ er en diagonalmatrice, er dets egenvektorer de standard basisvektorer, og at løfte hver del til $k^{th}$ potens multiplicerer den tilsvarende egenværdi med $k$.
+
+Således $B^k = V D^{k} V^{t} = V diag(\lambda_1^k, \lambda_2^k, . . . \lambda_n^k) V^{t}$. Da egenværdierne af $A$ er forskellige, er matricen $V$ inverterbar, så vi kan skrive $A = VDV^{-1}$.
+
+Dermed er Sætning 3.4 bevist for tilfældet, hvor $A$ har $n$ forskellige egenværdier.
 
 
 
