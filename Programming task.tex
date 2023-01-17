@@ -12,5 +12,23 @@
 
 \subsection*{Programmering opgaver 3.}
 
+
 \subsection*{Tids overvejelser}
-For at teste det dksfldlf
+\subsubsection*{Hvordan beregnes tiden af en funktion i Python}
+For at få konkrete værdier for hvor lang tid det tager metoderne at beregne PageRank værdierne, så brugte vi \emph{time} modulet indbygget i Python. Her kan der bruges \texttt{time.time()} til at gemme en start-tid før funktionen er startet og en tid når den er stoppet. Den totale tid det tager beregnes så ved at trække start-tiden fra stop-tiden.
+
+\subsubsection*{Analyse af data}
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{c|l|l|l|l}
+        Tid [sekunder] & Random Surfer & Recursive & Limit & Eigenvectors \\
+        \hline
+        $n = 10$       & 1.8134   & 0.0000   & 0.0000   & 0.0010   \\
+        $n = 75$       & 3.4769   & 0.0110   & 0.0020   & 0.0028   \\
+        $n = 250$      & 7.6943   & 0.0860   & 0.0090   & 0.0699
+    \end{tabular}
+    \caption{En tabel over metodernes tidsforbrug afhængigt at $n$, antallet af webpages i simulationen. Når der står "0.0000" så betyder det ikke faktisk 0, men skyldes numeriske fejl fra python fordi tallet er så lille. Her refererer "Random Surfer" til Random surfer modellen med en dæmpningsfaktor, "Recursive" er den rekursive model, "Limit" er hvor der anvendes at $A$ er en \textit{Markov matrix} med positive værdier og "Eigenvectors er hvor der findes den korrekte egenvektor og den skaleres tilpasseligt.}
+    \label{tidsFigur}
+\end{table}
+
+På Tabel~\ref{tidsFigur}, kan det ses at Random Surfer modellen er den klart mest langsomme model som der er.
